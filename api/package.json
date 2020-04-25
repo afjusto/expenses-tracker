@@ -7,7 +7,8 @@
   "scripts": {
     "build": "tsc -p .",
     "dev": "nodemon index.ts",
-    "start": "node --inspect=5858 -r ts-node/register ./src/index.ts"
+    "start": "node --inspect=5858 -r ts-node/register ./src/index.ts",
+    "lint": "tslint --config tslint.json --project tsconfig.json"
   },
   "author": {
     "name": "André Justo",
@@ -30,6 +31,12 @@
     "uuidv4": "^6.0.7"
   },
   "devDependencies": {
+    "husky": "^4.2.5",
     "tslint": "^6.1.1"
+  },
+  "husky": {
+    "hooks": {
+      "pre-push": "npm run lint"
+    }
   }
 }

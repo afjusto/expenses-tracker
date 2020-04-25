@@ -37,4 +37,5 @@ app.delete("/api/transactions/:id", (req: express.Request, res: express.Response
   res.sendStatus(204);
 });
 
+// tslint:disable-next-line: no-console
 app.listen(PORT, () => console.log(`API listening on http://localhost:${PORT}`));
