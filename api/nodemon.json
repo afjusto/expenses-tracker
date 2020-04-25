@@ -1,0 +1,5 @@
+{
+  "ignore": ["*.json"],
+  "exec": "npm start",
+  "ext": "ts"
+}
