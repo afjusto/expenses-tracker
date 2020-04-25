@@ -1,0 +1,23 @@
+{
+  "name": "api",
+  "private": true,
+  "version": "0.0.0",
+  "description": "Expenses tracker API.",
+  "main": "index.js",
+  "scripts": {
+    "dev": "nodemon index.js --ignore '*.json'"
+  },
+  "author": {
+    "name": "André Justo",
+    "email": "andrefjusto@gmail.com",
+    "url": "https://github.com/afjusto"
+  },
+  "license": "ISC",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "lowdb": "^1.0.0",
+    "nodemon": "^2.0.3",
+    "uuidv4": "^6.0.7"
+  }
+}
