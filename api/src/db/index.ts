@@ -1,13 +1,17 @@
 import * as lowdb from "lowdb";
 import * as FileSync from "lowdb/adapters/FileSync";
+import accountsAdapter, { AccountsAdapter } from "./adapters/accounts";
 import transactionsAdapter, { TransactionsAdapter } from "./adapters/transactions";
+import { Account } from "models/account";
 import { Transaction } from "models/transaction";
 
 export interface Schema {
+  accounts: Account[];
   transactions: Transaction[];
 }
 
 export interface Adapters {
+  accounts: AccountsAdapter;
   transactions: TransactionsAdapter;
 }
 
@@ -20,6 +24,7 @@ db.defaults({
 }).write();
 
 const adapters = {
+  accounts: accountsAdapter(db),
   transactions: transactionsAdapter(db),
 };
 
