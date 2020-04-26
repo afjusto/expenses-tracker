@@ -1,19 +1,26 @@
 import * as lowdb from "lowdb";
 import * as FileSync from "lowdb/adapters/FileSync";
-import transactionsAdapter from "./adapters/transactions";
-import { Transaction } from "models";
+import transactionsAdapter, { TransactionsAdapter } from "./adapters/transactions";
+import { Transaction } from "models/transaction";
 
-export type Schema = {
+export interface Schema {
   transactions: Transaction[];
-};
+}
+
+export interface Adapters {
+  transactions: TransactionsAdapter;
+}
 
 const adapter = new FileSync<Schema>(`${__dirname}/db.json`);
 const db = lowdb(adapter);
 
 db.defaults({
+  accounts: [],
   transactions: [],
 }).write();
 
-export default {
+const adapters = {
   transactions: transactionsAdapter(db),
 };
+
+export default adapters;

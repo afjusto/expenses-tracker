@@ -1,9 +1,17 @@
 import { uuid } from "uuidv4";
 import { LowdbSync } from "lowdb";
 import { Schema } from "../index";
-import { Transaction } from "models";
+import { Transaction } from "models/transaction";
 
-export default function (db: LowdbSync<Schema>) {
+export interface TransactionsAdapter {
+  get(id: string): Transaction;
+  getAll(): Transaction[];
+  create(transaction: Transaction): Transaction;
+  update(id: string, transaction: Transaction): Transaction;
+  remove(id: string): void;
+}
+
+const adapter = (db: LowdbSync<Schema>): TransactionsAdapter => {
   /**
    * Gets a transaction.
    */
@@ -57,4 +65,6 @@ export default function (db: LowdbSync<Schema>) {
     update,
     remove,
   };
-}
+};
+
+export default adapter;
