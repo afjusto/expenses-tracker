@@ -4,6 +4,7 @@ import Menu from "antd/es/menu";
 import styled from "styled-components";
 import { BarChartOutlined, DollarCircleFilled, SettingFilled } from "@ant-design/icons";
 import { Link, Router } from "@reach/router";
+
 import Budgets from "pages/Budgets";
 import Settings from "pages/Settings";
 import Transactions from "pages/Transactions";
@@ -22,7 +23,7 @@ const Logo = styled.div`
   height: 64px;
 `;
 
-const App = () => {
+const App: React.FC = () => {
   return (
     <AppLayout>
       <Layout.Sider width={250}>

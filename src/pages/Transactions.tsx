@@ -1,7 +1,9 @@
 import React from "react";
+import { RouteComponentProps } from "@reach/router";
+
 import MainContainer from "components/MainContainer";
 
-const Transactions = () => {
+const Transactions: React.FC<RouteComponentProps> = () => {
   return (
     <MainContainer title="Transactions">
       <div>

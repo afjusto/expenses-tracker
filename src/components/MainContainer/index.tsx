@@ -2,6 +2,10 @@ import React from "react";
 import Layout from "antd/es/layout";
 import styled from "styled-components";
 
+type Props = {
+  title: string;
+};
+
 const Header = styled(Layout.Header)`
   background: #ffffff;
   padding: 0 32px;
@@ -11,7 +15,7 @@ const Content = styled(Layout.Content)`
   margin: 32px;
 `;
 
-const MainContainer = ({ children, title }) => {
+const MainContainer: React.FC<Props> = ({ title, children }) => {
   return (
     <>
       <Header>
