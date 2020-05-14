@@ -1,13 +1,12 @@
 import React from "react";
-import Layout from "antd/es/layout";
-import Menu from "antd/es/menu";
 import styled from "styled-components";
 import { BarChartOutlined, DollarCircleFilled, SettingFilled } from "@ant-design/icons";
 import { Link, Router } from "@reach/router";
+import { Layout, Menu } from "antd";
 
-import Budgets from "pages/Budgets";
-import Settings from "pages/Settings";
-import Transactions from "pages/Transactions";
+import Budgets from "@/pages/Budgets";
+import Settings from "@/pages/Settings";
+import Transactions from "@/pages/Transactions";
 
 const AppLayout = styled(Layout)`
   height: 100vh;
