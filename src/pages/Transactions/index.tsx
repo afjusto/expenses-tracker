@@ -5,6 +5,7 @@ import { RouteComponentProps } from "@reach/router";
 
 import MainContainer from "@/components/MainContainer";
 import TransactionForm from "@/components/TransactionForm";
+import TransactionsList from "@/components/TransactionsList";
 import { Transaction } from "@models/transaction";
 import {
   openSuccessNotification,
@@ -69,6 +70,7 @@ const Transactions: React.FC<RouteComponentProps> = () => {
 
   return (
     <MainContainer title="Transactions" actions={headerActions}>
+      <TransactionsList transactions={transactions} />
       <Drawer
         closable={true}
         visible={drawerVisible}
