@@ -1,7 +1,7 @@
 import React from "react";
 import { RouteComponentProps } from "@reach/router";
 
-import MainContainer from "components/MainContainer";
+import MainContainer from "@/components/MainContainer";
 
 const Settings: React.FC<RouteComponentProps> = () => {
   return (
