@@ -1,0 +1,9 @@
+.ant-menu-horizontal {
+  display: flex;
+}
+
+.ant-menu-horizontal > .ant-menu-item {
+  flex: 1;
+  margin: 0 2px;
+  text-align: center;
+}

@@ -1,16 +1,13 @@
 export interface Transaction {
-  id: string;
+  id?: string;
   amount: number;
   date: number;
-  description: string;
+  description?: string;
   type: TransactionType;
   accountId: string;
+  receiverAccountId?: string;
   categoryId?: string;
   entityId?: string;
-}
-
-export interface TransferTransaction extends Transaction {
-  receiverAccountId: string;
 }
 
 export enum TransactionType {

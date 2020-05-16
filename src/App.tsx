@@ -1,6 +1,10 @@
 import React from "react";
 import styled from "styled-components";
-import { BarChartOutlined, DollarCircleFilled, SettingFilled } from "@ant-design/icons";
+import {
+  BarChartOutlined,
+  DollarCircleFilled,
+  SettingFilled,
+} from "@ant-design/icons";
 import { Link, Router } from "@reach/router";
 import { Layout, Menu } from "antd";
 
