@@ -1,10 +1,19 @@
 import React, { useState } from "react";
+import moment from "moment";
 import styled from "styled-components";
 import { Button, DatePicker, Form, Input, Select, Menu } from "antd";
 import { Store } from "antd/es/form/interface";
 import { RetweetOutlined, FallOutlined, RiseOutlined } from "@ant-design/icons";
-
+import { Transaction } from "@models/transaction";
 import "./styles.css";
+import {
+  createTransaction,
+  updateTransaction,
+} from "@/utils/transactions-client";
+import {
+  openSuccessNotification,
+  openErrorNotification,
+} from "@/utils/notifications";
 
 // FIXME: imported TS enums break with create-react-app loader
 // https://github.com/facebook/create-react-app/issues/8987
@@ -15,8 +24,9 @@ enum TransactionType {
 }
 
 type Props = {
-  onCancel: () => void;
-  onSubmit: (values: Store) => void;
+  onCancel?: () => void;
+  onSubmit?: () => void;
+  transaction?: Transaction | null;
 };
 
 const Column = styled.div`
@@ -41,16 +51,84 @@ const SwitchAccountButton = styled(Button)`
   z-index: 1;
 `;
 
-const TransactionForm: React.FC<Props> = ({ onCancel, onSubmit }) => {
-  const [selectedTab, setSelectedTab] = useState(TransactionType.EXPENSE);
+const TransactionForm: React.FC<Props> = ({
+  onCancel,
+  onSubmit,
+  transaction: existingTransaction,
+}) => {
+  const [selectedTab, setSelectedTab] = useState(
+    existingTransaction ? existingTransaction.type : TransactionType.EXPENSE
+  );
   const isTransfer = selectedTab === TransactionType.TRANSFER;
   const [form] = Form.useForm();
+  const isEditing = !!existingTransaction;
+  let initialValues = null;
 
-  const handleSubmit = (values: Store): void => {
-    onSubmit({ ...values, type: selectedTab });
-    form.resetFields();
+  /**
+   * Creates a new transaction and provides feedback to the user.
+   *
+   * @param transaction the transaction to be created
+   */
+  const create = (transaction: Transaction): void => {
+    createTransaction(transaction)
+      .then(() => openSuccessNotification("Transaction successfully created."))
+      .catch(() =>
+        openErrorNotification(
+          "There was a problem while creating the transaction."
+        )
+      );
   };
 
+  /**
+   * Updates an existing transaction and provides feedback to the user.
+   *
+   * @param transaction the transaction to be updated
+   */
+  const update = (transaction: Transaction): void => {
+    updateTransaction(transaction)
+      .then(() => openSuccessNotification("Transaction successfully updated."))
+      .catch(() =>
+        openErrorNotification(
+          "There was a problem while updating the transaction."
+        )
+      );
+  };
+
+  /**
+   * Callback to be executed when the `Submit` button is clicked.
+   *
+   * @param values current form values
+   */
+  const handleSubmit = (values: Store) => {
+    const amount = parseInt(values.amount);
+    const transaction: Transaction = {
+      ...existingTransaction,
+      accountId: values.fromAccount,
+      amount: selectedTab === TransactionType.EXPENSE ? -amount : amount,
+      categoryId: values.category,
+      date: new Date(values.date).getTime(),
+      description: values.description,
+      entityId: values.entity,
+      receiverAccountId: values.toAccount,
+      type: selectedTab,
+    };
+    isEditing ? update(transaction) : create(transaction);
+
+    form.resetFields();
+    onSubmit && onSubmit();
+  };
+
+  /**
+   * Callback to be executed when the `Cancel` button is clicked.
+   */
+  const handleCancel = () => {
+    form.resetFields();
+    onCancel && onCancel();
+  };
+
+  /**
+   * Switch the `from` and `to` account values.
+   */
   const switchAccounts = () => {
     const currentFormValues: Store = form.getFieldsValue();
     const newFormValues: Store = {
@@ -61,15 +139,29 @@ const TransactionForm: React.FC<Props> = ({ onCancel, onSubmit }) => {
     form.setFieldsValue(newFormValues);
   };
 
+  if (existingTransaction && !initialValues) {
+    initialValues = {
+      amount: Math.abs(existingTransaction.amount),
+      category: existingTransaction.categoryId,
+      date: moment(existingTransaction.date),
+      description: existingTransaction.description,
+      entity: existingTransaction.entityId,
+      fromAccount: existingTransaction.accountId,
+      toAccount: existingTransaction.receiverAccountId,
+    };
+  }
+
   return (
     <div>
       <div className="ant-drawer-header">
-        <div className="ant-drawer-title">Add a new transaction</div>
+        <div className="ant-drawer-title">
+          {isEditing ? "Edit transaction" : "Add a new transaction"}
+        </div>
       </div>
       <div style={{ padding: "8px 24px" }}>
         <Menu
           mode="horizontal"
-          defaultSelectedKeys={[TransactionType.EXPENSE]}
+          defaultSelectedKeys={[selectedTab]}
           onSelect={(event) => setSelectedTab(event.key as TransactionType)}
         >
           <Menu.Item key={TransactionType.EXPENSE} icon={<FallOutlined />}>
@@ -83,7 +175,12 @@ const TransactionForm: React.FC<Props> = ({ onCancel, onSubmit }) => {
           </Menu.Item>
         </Menu>
         <div style={{ marginTop: "24px" }}>
-          <Form form={form} layout="vertical" onFinish={handleSubmit}>
+          <Form
+            form={form}
+            layout="vertical"
+            onFinish={handleSubmit}
+            initialValues={initialValues ? initialValues : undefined}
+          >
             <Row>
               <Column>
                 <Form.Item
@@ -189,14 +286,7 @@ const TransactionForm: React.FC<Props> = ({ onCancel, onSubmit }) => {
               </Column>
             </Row>
             <Row style={{ justifyContent: "flex-end" }}>
-              <Button
-                onClick={() => {
-                  form.resetFields();
-                  onCancel();
-                }}
-              >
-                Cancel
-              </Button>
+              <Button onClick={handleCancel}>Cancel</Button>
               <Button
                 type="primary"
                 htmlType="submit"
