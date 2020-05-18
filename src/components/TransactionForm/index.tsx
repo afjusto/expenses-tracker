@@ -1,19 +1,28 @@
 import React, { useState } from "react";
 import moment from "moment";
 import styled from "styled-components";
-import { Button, DatePicker, Form, Input, Select, Menu } from "antd";
+import {
+  Button,
+  DatePicker,
+  Form,
+  Input,
+  Menu,
+  Popconfirm,
+  Select,
+} from "antd";
 import { Store } from "antd/es/form/interface";
 import { RetweetOutlined, FallOutlined, RiseOutlined } from "@ant-design/icons";
 import { Transaction } from "@models/transaction";
-import "./styles.css";
 import {
   createTransaction,
   updateTransaction,
+  deleteTransaction,
 } from "@/utils/transactions-client";
 import {
   openSuccessNotification,
   openErrorNotification,
 } from "@/utils/notifications";
+import "./styles.css";
 
 // FIXME: imported TS enums break with create-react-app loader
 // https://github.com/facebook/create-react-app/issues/8987
@@ -25,6 +34,7 @@ enum TransactionType {
 
 type Props = {
   onCancel?: () => void;
+  onDelete?: () => void;
   onSubmit?: () => void;
   transaction?: Transaction | null;
 };
@@ -53,6 +63,7 @@ const SwitchAccountButton = styled(Button)`
 
 const TransactionForm: React.FC<Props> = ({
   onCancel,
+  onDelete,
   onSubmit,
   transaction: existingTransaction,
 }) => {
@@ -94,6 +105,16 @@ const TransactionForm: React.FC<Props> = ({
       );
   };
 
+  const remove = (transaction: Transaction): void => {
+    deleteTransaction(transaction)
+      .then(() => openSuccessNotification("Transaction successfully deleted."))
+      .catch(() =>
+        openErrorNotification(
+          "There was a problem while deleting the transaction."
+        )
+      );
+  };
+
   /**
    * Callback to be executed when the `Submit` button is clicked.
    *
@@ -124,6 +145,16 @@ const TransactionForm: React.FC<Props> = ({
   const handleCancel = () => {
     form.resetFields();
     onCancel && onCancel();
+  };
+
+  /**
+   * Callback to be executed when the `Delete` button is clicked.
+   */
+  const handleDelete = () => {
+    if (existingTransaction) {
+      remove(existingTransaction);
+      onDelete && onDelete();
+    }
   };
 
   /**
@@ -285,15 +316,33 @@ const TransactionForm: React.FC<Props> = ({
                 </Form.Item>
               </Column>
             </Row>
-            <Row style={{ justifyContent: "flex-end" }}>
-              <Button onClick={handleCancel}>Cancel</Button>
-              <Button
-                type="primary"
-                htmlType="submit"
-                style={{ marginLeft: 8 }}
-              >
-                Submit
-              </Button>
+            <Row
+              style={{
+                justifyContent: isEditing ? "space-between" : "flex-end",
+              }}
+            >
+              {isEditing && existingTransaction && (
+                <Popconfirm
+                  title="Are you sure you want to delete this transaction?"
+                  onConfirm={handleDelete}
+                  okText="Yes"
+                  cancelText="No"
+                >
+                  <Button danger type="primary">
+                    Delete
+                  </Button>
+                </Popconfirm>
+              )}
+              <div>
+                <Button onClick={handleCancel}>Cancel</Button>
+                <Button
+                  type="primary"
+                  htmlType="submit"
+                  style={{ marginLeft: 8 }}
+                >
+                  Submit
+                </Button>
+              </div>
             </Row>
           </Form>
         </div>

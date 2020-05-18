@@ -30,3 +30,12 @@ export const updateTransaction = (transaction: Transaction) => {
     transaction
   );
 };
+
+/**
+ * Deletes an existing transaction.
+ *
+ * @param transaction the transaction to be deleted
+ */
+export const deleteTransaction = (transaction: Transaction) => {
+  return axios.delete<Transaction>(`${TRANSACTIONS_API_URL}/${transaction.id}`);
+};

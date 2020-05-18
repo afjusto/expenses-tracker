@@ -39,6 +39,14 @@ const Transactions: React.FC<RouteComponentProps> = () => {
   };
 
   /**
+   * Callback to be executed when a transaction is deleted.
+   */
+  const handleOnDelete = () => {
+    closeDrawer();
+    fetchTransactions();
+  };
+
+  /**
    * Callback to be executed when a transaction list item is clicked.
    *
    * @param transaction the selected transaction
@@ -74,6 +82,7 @@ const Transactions: React.FC<RouteComponentProps> = () => {
         {drawerVisible && (
           <TransactionForm
             onCancel={closeDrawer}
+            onDelete={handleOnDelete}
             onSubmit={handleOnSubmit}
             transaction={selectedTransaction}
           />
