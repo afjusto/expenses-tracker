@@ -18,8 +18,12 @@
     "styled-components": "^5.1.0",
     "typescript": "^3.9.2"
   },
+  "main": "./dist/electron/bundle.js",
   "scripts": {
+    "build": "webpack --config webpack.prod.js",
     "lint": "eslint './src/**/*.{js,tsx}'",
+    "start": "electron .",
+    "start:debug": "npm start -- --enable-logging --devtools",
     "start:dev": "webpack-dev-server --config ./webpack.dev.js"
   },
   "devDependencies": {
@@ -35,6 +39,7 @@
     "@typescript-eslint/eslint-plugin": "^2.33.0",
     "@typescript-eslint/parser": "^2.33.0",
     "css-loader": "3.4.2",
+    "electron": "^9.0.0",
     "eslint": "^6.8.0",
     "eslint-config-prettier": "^6.11.0",
     "eslint-plugin-import": "2.20.1",
