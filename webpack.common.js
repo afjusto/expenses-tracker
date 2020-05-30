@@ -15,9 +15,11 @@ const uiConfig = {
   module: {
     rules: [
       {
-        test: /\.(ts|tsx)([?]?.*)$/,
-        loader: ["ts-loader"],
+        test: /\.(ts|js)x?$/,
         exclude: /node_modules/,
+        use: {
+          loader: "babel-loader",
+        },
       },
       {
         test: /\.css$/,
