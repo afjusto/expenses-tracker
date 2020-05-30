@@ -1,25 +1,12 @@
-const { HotModuleReplacementPlugin } = require("webpack");
-const HtmlWebPackPlugin = require("html-webpack-plugin");
 const merge = require("webpack-merge");
-const common = require("./webpack.common.js");
+const { ui, main } = require("./webpack.common.js");
 
-const config = merge(common, {
+const config = {
   mode: "development",
-  devtool: "eval-source-map",
-  devServer: {
-    hot: true,
-    port: 3000,
-    proxy: {
-      "/api": "http://localhost:8080",
-    },
-  },
-  plugins: [
-    new HotModuleReplacementPlugin(),
-    new HtmlWebPackPlugin({
-      template: "./src/index.html",
-      filename: "./index.html",
-    }),
-  ],
-});
+  devtool: "inline-source-map",
+};
 
-module.exports = config;
+const uiConfig = merge(ui, config);
+const mainConfig = merge(main, config);
+
+module.exports = [uiConfig, mainConfig];
