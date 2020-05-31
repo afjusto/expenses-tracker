@@ -1,6 +1,6 @@
 import React from "react";
 import { Card } from "antd";
-import { Transaction } from "@models/transaction";
+import { Transaction } from "@api/models/transaction";
 
 type Props = {
   onTransactionClick: (transaction: Transaction) => void;

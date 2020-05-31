@@ -15,7 +15,7 @@
     "noUnusedParameters": true,
     "paths": {
       "@/*": ["src/*"],
-      "@models/*": ["api/src/models/*"]
+      "@api/*": ["api/src/*"]
     },
     "resolveJsonModule": true,
     "skipLibCheck": true,

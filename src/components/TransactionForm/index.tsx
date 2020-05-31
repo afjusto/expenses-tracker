@@ -12,7 +12,7 @@ import {
 } from "antd";
 import { Store } from "antd/es/form/interface";
 import { RetweetOutlined, FallOutlined, RiseOutlined } from "@ant-design/icons";
-import { Transaction } from "@models/transaction";
+import { Transaction } from "@api/models/transaction";
 import {
   createTransaction,
   updateTransaction,

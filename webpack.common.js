@@ -79,7 +79,7 @@ const sharedConfig = {
   resolve: {
     alias: {
       "@": path.resolve(__dirname, "src"),
-      "@models": path.resolve(__dirname, "api/src/models"),
+      "@api": path.resolve(__dirname, "api/src"),
     },
     extensions: [".ts", ".tsx", ".js"],
   },
