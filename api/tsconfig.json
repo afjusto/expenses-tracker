@@ -1,11 +1,18 @@
 {
   "compilerOptions": {
-    "noImplicitAny": true,
-    "sourceMap": true,
-    "target": "es6",
+    "allowSyntheticDefaultImports": true,
+    "baseUrl": "./",
+    "esModuleInterop": true,
     "module": "commonjs",
+    "noImplicitAny": false,
+    "noUnusedLocals": false,
     "outDir": "./dist",
-    "baseUrl": "./src"
+    "paths": {
+      "@api/*": ["src/*"]
+    },
+    "strict": true,
+    "sourceMap": true,
+    "target": "es6"
   },
   "include": ["src/**/*.ts"],
   "exclude": ["node_modules", ".vscode"]

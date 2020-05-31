@@ -1,0 +1,10 @@
+{
+  "compilerOptions": {
+    "baseUrl": ".",
+    "esModuleInterop": true,
+    "paths": {
+      "@api/*": ["../api/src/*"]
+    },
+    "strict": true
+  }
+}

@@ -1,13 +1,11 @@
-import axios from "axios";
-import { Transaction } from "@models/transaction";
-
-const TRANSACTIONS_API_URL = "/api/transactions";
+import { ipcRenderer } from "electron";
+import { Transaction } from "@api/models/transaction";
 
 /**
  * Gets the list of transactions.
  */
 export const getTransactions = () => {
-  return axios.get(TRANSACTIONS_API_URL);
+  return Promise.resolve(ipcRenderer.sendSync("@transaction/GET_ALL"));
 };
 
 /**
@@ -16,7 +14,9 @@ export const getTransactions = () => {
  * @param transaction the transaction to be created
  */
 export const createTransaction = (transaction: Transaction) => {
-  return axios.post<Transaction>(TRANSACTIONS_API_URL, transaction);
+  return Promise.resolve(
+    ipcRenderer.sendSync("@transaction/CREATE", transaction)
+  );
 };
 
 /**
@@ -25,9 +25,8 @@ export const createTransaction = (transaction: Transaction) => {
  * @param transaction the transaction to be updated
  */
 export const updateTransaction = (transaction: Transaction) => {
-  return axios.put<Transaction>(
-    `${TRANSACTIONS_API_URL}/${transaction.id}`,
-    transaction
+  return Promise.resolve(
+    ipcRenderer.sendSync("@transaction/UPDATE", transaction)
   );
 };
 
@@ -37,5 +36,7 @@ export const updateTransaction = (transaction: Transaction) => {
  * @param transaction the transaction to be deleted
  */
 export const deleteTransaction = (transaction: Transaction) => {
-  return axios.delete<Transaction>(`${TRANSACTIONS_API_URL}/${transaction.id}`);
+  return Promise.resolve(
+    ipcRenderer.sendSync("@transaction/DELETE", transaction.id)
+  );
 };

@@ -1,9 +1,12 @@
-import * as lowdb from "lowdb";
-import * as FileSync from "lowdb/adapters/FileSync";
-import accountsAdapter, { AccountsAdapter } from "./adapters/accounts";
-import transactionsAdapter, { TransactionsAdapter } from "./adapters/transactions";
-import { Account } from "models/account";
-import { Transaction } from "models/transaction";
+import { app } from "electron";
+import lowdb from "lowdb";
+import FileSync from "lowdb/adapters/FileSync";
+import accountsAdapter, { AccountsAdapter } from "@api/db/adapters/accounts";
+import transactionsAdapter, {
+  TransactionsAdapter,
+} from "@api/db/adapters/transactions";
+import { Account } from "@api/models/account";
+import { Transaction } from "@api/models/transaction";
 
 export interface Schema {
   accounts: Account[];
@@ -15,7 +18,7 @@ export interface Adapters {
   transactions: TransactionsAdapter;
 }
 
-const adapter = new FileSync<Schema>(`${__dirname}/db.json`);
+const adapter = new FileSync<Schema>(`${app.getPath("userData")}/db/db.json`);
 const db = lowdb(adapter);
 
 db.defaults({

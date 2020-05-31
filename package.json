@@ -13,7 +13,7 @@
     "analyze": "webpack-bundle-analyzer --port 4200 dist/ui/stats.json",
     "build": "webpack --config webpack.prod.js --env.production",
     "dev": "webpack --config webpack.dev.js --watch",
-    "lint": "eslint './src/**/*.{js,tsx}'",
+    "lint": "eslint './**/*.{ts,tsx}' --ignore-pattern node_modules/",
     "start": "electron .",
     "start:debug": "npm start -- --enable-logging --devtools"
   },
@@ -22,10 +22,12 @@
     "@reach/router": "^1.3.3",
     "antd": "^4.2.0",
     "axios": "^0.19.2",
+    "lowdb": "^1.0.0",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "styled-components": "^5.1.0",
-    "typescript": "^3.9.2"
+    "typescript": "^3.9.2",
+    "uuidv4": "^6.1.0"
   },
   "devDependencies": {
     "@babel/core": "^7.10.1",
@@ -35,7 +37,8 @@
     "@testing-library/react": "^9.5.0",
     "@testing-library/user-event": "^7.2.1",
     "@types/jest": "^25.2.1",
-    "@types/node": "^14.0.1",
+    "@types/lowdb": "^1.0.9",
+    "@types/node": "^14.0.6",
     "@types/reach__router": "^1.3.5",
     "@types/react": "^16.9.35",
     "@types/react-dom": "^16.9.8",

@@ -1,34 +1,56 @@
 import { uuid } from "uuidv4";
 import { LowdbSync } from "lowdb";
-import { Schema } from "../index";
-import { Account } from "models/account";
+import { Schema } from "@api/db";
+import { Account } from "@api/models/account";
 
 export interface AccountsAdapter {
+  /**
+   * Gets an account.
+   *
+   * @param id the id of the account to be retrieved
+   * @returns an account
+   */
   get(id: string): Account;
+
+  /**
+   * Gets a list of accounts.
+   *
+   * @returns a list of accounts
+   */
   getAll(): Account[];
+
+  /**
+   * Creates a new account.
+   *
+   * @param account the account to be created
+   * @returns the created account
+   */
   create(account: Account): Account;
-  update(id: string, account: Account): Account;
+
+  /**
+   * Updates an existing account.
+   *
+   * @param account the account to be updated
+   * @returns the updated account, or `null` if the provided account does not exist
+   */
+  update(account: Account): Account | null;
+
+  /**
+   * Removes an account.
+   * @param id the id of the account to be removed
+   */
   remove(id: string): void;
 }
 
 const adapter = (db: LowdbSync<Schema>): AccountsAdapter => {
-  /**
-   * Gets a account.
-   */
   const get = (id: string): Account => {
     return db.get("accounts").find({ id }).value();
   };
 
-  /**
-   * Gets the list of accounts.
-   */
   const getAll = (): Account[] => {
     return db.get("accounts").value();
   };
 
-  /**
-   * Creates a new account.
-   */
   const create = (account: Account): Account => {
     const newAccount: Account = {
       ...account,
@@ -38,10 +60,8 @@ const adapter = (db: LowdbSync<Schema>): AccountsAdapter => {
     return newAccount;
   };
 
-  /**
-   * Updates an existing account.
-   */
-  const update = (id: string, account: Account): Account => {
+  const update = (account: Account): Account | null => {
+    const id = account.id;
     const accountRecord = db.get("accounts").find({ id });
 
     if (!accountRecord.value()) {
@@ -51,9 +71,6 @@ const adapter = (db: LowdbSync<Schema>): AccountsAdapter => {
     return account;
   };
 
-  /**
-   * Removes a account.
-   */
   const remove = (id: string): void => {
     db.get("accounts").remove({ id }).write();
   };

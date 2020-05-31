@@ -27,7 +27,7 @@ const Transactions: React.FC<RouteComponentProps> = () => {
    * Gets the list of transactions.
    */
   const fetchTransactions = () => {
-    getTransactions().then(({ data }) => setTransactions(data.transactions));
+    getTransactions().then(({ transactions }) => setTransactions(transactions));
   };
 
   /**

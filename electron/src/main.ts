@@ -1,11 +1,17 @@
 import * as path from "path";
-import * as electron from "electron";
+import { app, BrowserWindow } from "electron";
+import "./channels/transaction";
 
-const { app, BrowserWindow } = electron;
 let mainWindow: Electron.BrowserWindow | null = null;
 
 const createWindow = () => {
-  mainWindow = new BrowserWindow({ width: 1280, height: 1024 });
+  mainWindow = new BrowserWindow({
+    width: 1280,
+    height: 1024,
+    webPreferences: {
+      nodeIntegration: true,
+    },
+  });
   mainWindow.loadURL(`file://${path.join(__dirname, "../ui/index.html")}`);
 
   if (process.argv.includes("--devtools")) {

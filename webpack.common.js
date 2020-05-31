@@ -45,7 +45,7 @@ const uiConfig = {
 
 const mainConfig = {
   entry: {
-    main: ["./electron/main.ts"],
+    main: ["./electron/src/main.ts"],
   },
   output: {
     path: `${__dirname}/dist/electron`,
