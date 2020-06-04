@@ -11,11 +11,13 @@ const Header = styled(Layout.Header)`
   background: #ffffff;
   display: flex;
   justify-content: space-between;
-  padding: 0 32px;
+  padding: 0 24px;
 `;
 
 const Content = styled(Layout.Content)`
-  margin: 32px;
+  height: calc(100vh - 128px);
+  margin: 24px;
+  overflow-y: scroll;
 `;
 
 const MainContainer: React.FC<Props> = ({ actions, title, children }) => {

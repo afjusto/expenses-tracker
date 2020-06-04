@@ -1,5 +1,6 @@
 import * as path from "path";
 import { app, BrowserWindow } from "electron";
+import "./channels/entity";
 import "./channels/transaction";
 
 let mainWindow: Electron.BrowserWindow | null = null;
