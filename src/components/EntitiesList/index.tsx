@@ -1,5 +1,5 @@
 import React from "react";
-import { Card, Input, List } from "antd";
+import { Card, List } from "antd";
 import { Entity } from "@api/models/entity";
 
 type Props = {

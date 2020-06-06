@@ -1,5 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom";
+import { HashRouter } from "react-router-dom";
 import { createGlobalStyle } from "styled-components";
 import App from "./App";
 import "antd/dist/antd.css";
@@ -19,7 +20,9 @@ const GlobalStyle = createGlobalStyle`
 ReactDOM.render(
   <>
     <GlobalStyle />
-    <App />
+    <HashRouter>
+      <App />
+    </HashRouter>
   </>,
   document.getElementById("root")
 );

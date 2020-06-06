@@ -1,11 +1,11 @@
 import React from "react";
 import styled from "styled-components";
+import { Link, Route, useLocation, Redirect } from "react-router-dom";
 import {
   BarChartOutlined,
   DollarCircleFilled,
   SettingFilled,
 } from "@ant-design/icons";
-import { Link, Router } from "@reach/router";
 import { Layout, Menu } from "antd";
 
 import Budgets from "@/pages/Budgets";
@@ -28,11 +28,21 @@ const Logo = styled.div`
 `;
 
 const App: React.FC = () => {
+  const selectedMenuKey = useLocation().pathname.replace("/", "");
+  const defaultOpenKeys = selectedMenuKey.startsWith("settings")
+    ? "settings"
+    : "";
+
   return (
     <AppLayout>
       <Layout.Sider width={250}>
         <Logo>Expenses Tracker</Logo>
-        <Menu theme="dark" defaultSelectedKeys={["transactions"]} mode="inline">
+        <Menu
+          theme="dark"
+          selectedKeys={[selectedMenuKey]}
+          defaultOpenKeys={[defaultOpenKeys]}
+          mode="inline"
+        >
           <Menu.Item key="transactions">
             <Link to="/transactions">
               <DollarCircleFilled />
@@ -50,22 +60,21 @@ const App: React.FC = () => {
             icon={<SettingFilled />}
             title="Settings"
           >
-            <Menu.Item key="general">
-              <Link to="/settings">General</Link>
+            <Menu.Item key="settings/general">
+              <Link to="/settings/general">General</Link>
             </Menu.Item>
-            <Menu.Item key="entities">
-              <Link to="/entities">Entities</Link>
+            <Menu.Item key="settings/entities">
+              <Link to="/settings/entities">Entities</Link>
             </Menu.Item>
           </Menu.SubMenu>
         </Menu>
       </Layout.Sider>
       <Layout>
-        <Router>
-          <Transactions path="/transactions" default />
-          <Budgets path="/budgets" />
-          <Settings path="/settings" />
-          <Entities path="/entities" />
-        </Router>
+        <Route path="/transactions" component={Transactions} />
+        <Route path="/budgets" component={Budgets} />
+        <Route path="/settings/general" component={Settings} />
+        <Route path="/settings/entities" component={Entities} />
+        <Route exact path="/" render={() => <Redirect to="/transactions" />} />
       </Layout>
     </AppLayout>
   );
