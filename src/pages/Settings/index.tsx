@@ -1,9 +1,8 @@
 import React from "react";
-import { RouteComponentProps } from "@reach/router";
 
 import MainContainer from "@/components/MainContainer";
 
-const Settings: React.FC<RouteComponentProps> = () => {
+const Settings: React.FC = () => {
   return (
     <MainContainer title="Settings">
       <div>

@@ -1,13 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { Button, Drawer } from "antd";
-import { RouteComponentProps } from "@reach/router";
 import MainContainer from "@/components/MainContainer";
 import TransactionForm from "@/components/TransactionForm";
 import TransactionsList from "@/components/TransactionsList";
 import { Transaction } from "@api/models/transaction";
 import { getTransactions } from "@/utils/transactions-client";
 
-const Transactions: React.FC<RouteComponentProps> = () => {
+const Transactions: React.FC = () => {
   const [transactions, setTransactions] = useState([]);
   const [drawerVisible, setDrawerVisible] = useState(false);
   const [

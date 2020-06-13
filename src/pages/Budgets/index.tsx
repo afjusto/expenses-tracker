@@ -1,9 +1,8 @@
 import React from "react";
-import { RouteComponentProps } from "@reach/router";
 
 import MainContainer from "@/components/MainContainer";
 
-const Budgets: React.FC<RouteComponentProps> = () => {
+const Budgets: React.FC = () => {
   return (
     <MainContainer title="Budgets">
       <div>
