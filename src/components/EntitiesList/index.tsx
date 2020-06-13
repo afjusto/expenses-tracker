@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, ChangeEvent, KeyboardEvent } from "react";
 import { Card, List, Input } from "antd";
 import { Entity } from "@api/models/entity";
 
@@ -56,6 +56,12 @@ type ListItemProps = {
 };
 
 const ListItem: React.FC<ListItemProps> = ({ onClick, entity }) => {
+  const handleKeyDown = (event: KeyboardEvent) => {
+    if (event.key.toLowerCase() === "enter") {
+      onClick();
+    }
+  };
+
   return (
     <Card
       size="small"
@@ -66,8 +72,11 @@ const ListItem: React.FC<ListItemProps> = ({ onClick, entity }) => {
         padding: "8px 16px",
       }}
       onClick={onClick}
+      onKeyDown={handleKeyDown}
+      tabIndex={0}
       css={`
-        :hover {
+        :hover,
+        :focus {
           border: 1px solid #40a9ff;
           cursor: pointer;
           transition: 0.3s linear;

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { KeyboardEvent } from "react";
 import { Card } from "antd";
 import { Transaction } from "@api/models/transaction";
 
@@ -33,14 +33,27 @@ type ListItemProps = {
 
 const ListItem: React.FC<ListItemProps> = ({ onClick, transaction }) => {
   const date = new Date(transaction.date).toLocaleDateString();
+  const handleKeyDown = (event: KeyboardEvent) => {
+    if (event.key.toLowerCase() === "enter") {
+      onClick();
+    }
+  };
 
   return (
     <Card
       size="small"
-      bodyStyle={{ display: "flex", alignItems: "center", width: "100%" }}
+      bodyStyle={{
+        display: "flex",
+        alignItems: "center",
+        width: "100%",
+        padding: "8px 16px",
+      }}
       onClick={onClick}
+      onKeyDown={handleKeyDown}
+      tabIndex={0}
       css={`
-        :hover {
+        :hover,
+        :focus {
           border: 1px solid #40a9ff;
           cursor: pointer;
           transition: 0.3s linear;
