@@ -1,5 +1,5 @@
-import React from "react";
-import { Card, List } from "antd";
+import React, { useState } from "react";
+import { Card, List, Input } from "antd";
 import { Entity } from "@api/models/entity";
 
 type Props = {
@@ -8,8 +8,31 @@ type Props = {
 };
 
 const EntitiesList: React.FC<Props> = ({ onEntityClick, entities }) => {
+  const [searchTerm, setSearchTerm] = useState("");
+
+  if (searchTerm) {
+    entities = entities.filter((entity: Entity) =>
+      entity.name.includes(searchTerm)
+    );
+  }
+
   return (
     <>
+      <div
+        css={`
+          margin-bottom: 8px;
+          width: 300px;
+        `}
+      >
+        <Input.Search
+          allowClear={true}
+          placeholder="Search"
+          onChange={(event: ChangeEvent<HTMLInputElement>) =>
+            setSearchTerm(event.target.value)
+          }
+          onSearch={(value: string) => setSearchTerm(value)}
+        />
+      </div>
       <List
         size="small"
         dataSource={entities}
