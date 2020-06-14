@@ -3,7 +3,7 @@ import { LowdbSync } from "lowdb";
 import { Schema } from "@api/db";
 import { Entity } from "@api/models/entity";
 
-export interface EntitiesAdapter {
+interface EntitiesAdapter {
   /**
    * Gets an entity.
    *
@@ -42,7 +42,7 @@ export interface EntitiesAdapter {
   remove(id: string): void;
 }
 
-const adapter = (db: LowdbSync<Schema>): EntitiesAdapter => {
+export const adapter = (db: LowdbSync<Schema>): EntitiesAdapter => {
   const get = (id: string): Entity => {
     return db.get("entities").find({ id }).value();
   };
@@ -83,5 +83,3 @@ const adapter = (db: LowdbSync<Schema>): EntitiesAdapter => {
     remove,
   };
 };
-
-export default adapter;

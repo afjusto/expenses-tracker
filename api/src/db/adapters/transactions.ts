@@ -3,7 +3,7 @@ import { LowdbSync } from "lowdb";
 import { Schema } from "@api/db";
 import { Transaction } from "@api/models/transaction";
 
-export interface TransactionsAdapter {
+interface TransactionsAdapter {
   /**
    * Gets a transaction.
    *
@@ -42,7 +42,7 @@ export interface TransactionsAdapter {
   remove(id: string): void;
 }
 
-const adapter = (db: LowdbSync<Schema>): TransactionsAdapter => {
+export const adapter = (db: LowdbSync<Schema>): TransactionsAdapter => {
   const get = (id: string): Transaction => {
     return db.get("transactions").find({ id }).value();
   };
@@ -83,5 +83,3 @@ const adapter = (db: LowdbSync<Schema>): TransactionsAdapter => {
     remove,
   };
 };
-
-export default adapter;

@@ -3,7 +3,7 @@ import { LowdbSync } from "lowdb";
 import { Schema } from "@api/db";
 import { Account } from "@api/models/account";
 
-export interface AccountsAdapter {
+interface AccountsAdapter {
   /**
    * Gets an account.
    *
@@ -42,7 +42,7 @@ export interface AccountsAdapter {
   remove(id: string): void;
 }
 
-const adapter = (db: LowdbSync<Schema>): AccountsAdapter => {
+export const adapter = (db: LowdbSync<Schema>): AccountsAdapter => {
   const get = (id: string): Account => {
     return db.get("accounts").find({ id }).value();
   };
@@ -83,5 +83,3 @@ const adapter = (db: LowdbSync<Schema>): AccountsAdapter => {
     remove,
   };
 };
-
-export default adapter;
