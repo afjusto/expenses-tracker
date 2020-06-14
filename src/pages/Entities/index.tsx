@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Button, Drawer, Empty } from "antd";
 import EntityForm from "@/components/EntityForm";
-import EntitiesList from "@/components/EntitiesList";
+import { EntitiesList } from "@/components/EntitiesList";
 import MainContainer from "@/components/MainContainer";
 import { Entity } from "@api/models/entity";
 import { getEntities } from "@/utils/entities-client";

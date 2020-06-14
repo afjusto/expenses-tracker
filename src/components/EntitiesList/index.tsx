@@ -2,17 +2,17 @@ import React, { useState, ChangeEvent, KeyboardEvent } from "react";
 import { Card, List, Input } from "antd";
 import { Entity } from "@api/models/entity";
 
-type Props = {
-  onEntityClick: (entity: Entity) => void;
+export type Props = {
+  onEntityClick?: (entity: Entity) => void;
   entities: Entity[];
 };
 
-const EntitiesList: React.FC<Props> = ({ onEntityClick, entities }) => {
+export const EntitiesList: React.FC<Props> = ({ onEntityClick, entities }) => {
   const [searchTerm, setSearchTerm] = useState("");
 
   if (searchTerm) {
-    entities = entities.filter((entity: Entity) =>
-      entity.name.includes(searchTerm)
+    entities = entities.filter(
+      (entity: Entity) => entity.name.search(new RegExp(searchTerm, "i")) > -1
     );
   }
 
@@ -40,15 +40,13 @@ const EntitiesList: React.FC<Props> = ({ onEntityClick, entities }) => {
           <ListItem
             key={entity.id}
             entity={entity}
-            onClick={() => onEntityClick(entity)}
+            onClick={() => onEntityClick && onEntityClick(entity)}
           />
         )}
       />
     </>
   );
 };
-
-export default EntitiesList;
 
 type ListItemProps = {
   entity: Entity;
