@@ -33,7 +33,7 @@ const Row = styled.div`
   }
 `;
 
-const EntityForm: React.FC<Props> = ({
+export const EntityForm: React.FC<Props> = ({
   onCancel,
   onDelete,
   onSubmit,
@@ -177,5 +177,3 @@ const EntityForm: React.FC<Props> = ({
     </div>
   );
 };
-
-export default EntityForm;

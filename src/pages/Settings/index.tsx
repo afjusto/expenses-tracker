@@ -1,8 +1,8 @@
 import React from "react";
 
-import MainContainer from "@/components/MainContainer";
+import { MainContainer } from "@/components/MainContainer";
 
-const Settings: React.FC = () => {
+export const Settings: React.FC = () => {
   return (
     <MainContainer title="Settings">
       <div>
@@ -11,5 +11,3 @@ const Settings: React.FC = () => {
     </MainContainer>
   );
 };
-
-export default Settings;

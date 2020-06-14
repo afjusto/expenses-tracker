@@ -1,8 +1,8 @@
 import React from "react";
 
-import MainContainer from "@/components/MainContainer";
+import { MainContainer } from "@/components/MainContainer";
 
-const Budgets: React.FC = () => {
+export const Budgets: React.FC = () => {
   return (
     <MainContainer title="Budgets">
       <div>
@@ -11,5 +11,3 @@ const Budgets: React.FC = () => {
     </MainContainer>
   );
 };
-
-export default Budgets;

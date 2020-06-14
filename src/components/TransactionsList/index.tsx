@@ -7,7 +7,7 @@ type Props = {
   transactions: Transaction[];
 };
 
-const TransactionsList: React.FC<Props> = ({
+export const TransactionsList: React.FC<Props> = ({
   onTransactionClick,
   transactions,
 }) => {
@@ -23,8 +23,6 @@ const TransactionsList: React.FC<Props> = ({
     </>
   );
 };
-
-export default TransactionsList;
 
 type ListItemProps = {
   transaction: Transaction;

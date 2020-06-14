@@ -20,7 +20,11 @@ const Content = styled(Layout.Content)`
   overflow-y: scroll;
 `;
 
-const MainContainer: React.FC<Props> = ({ actions, title, children }) => {
+export const MainContainer: React.FC<Props> = ({
+  actions,
+  title,
+  children,
+}) => {
   return (
     <>
       <Header>
@@ -31,5 +35,3 @@ const MainContainer: React.FC<Props> = ({ actions, title, children }) => {
     </>
   );
 };
-
-export default MainContainer;

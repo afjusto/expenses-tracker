@@ -12,7 +12,7 @@ import {
 } from "antd";
 import { Store } from "antd/es/form/interface";
 import { RetweetOutlined, FallOutlined, RiseOutlined } from "@ant-design/icons";
-import { Transaction } from "@api/models/transaction";
+import { Transaction, TransactionType } from "@api/models/transaction";
 import {
   createTransaction,
   updateTransaction,
@@ -23,14 +23,6 @@ import {
   openErrorNotification,
 } from "@/utils/notifications";
 import "./styles.css";
-
-// FIXME: imported TS enums break with create-react-app loader
-// https://github.com/facebook/create-react-app/issues/8987
-enum TransactionType {
-  EXPENSE = "EXPENSE",
-  INCOME = "INCOME",
-  TRANSFER = "TRANSFER",
-}
 
 type Props = {
   onCancel?: () => void;
@@ -61,7 +53,7 @@ const SwitchAccountButton = styled(Button)`
   z-index: 1;
 `;
 
-const TransactionForm: React.FC<Props> = ({
+export const TransactionForm: React.FC<Props> = ({
   onCancel,
   onDelete,
   onSubmit,
@@ -350,5 +342,3 @@ const TransactionForm: React.FC<Props> = ({
     </div>
   );
 };
-
-export default TransactionForm;

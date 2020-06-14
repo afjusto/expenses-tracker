@@ -8,10 +8,10 @@ import {
 } from "@ant-design/icons";
 import { Layout, Menu } from "antd";
 
-import Budgets from "@/pages/Budgets";
-import Entities from "@/pages/Entities";
-import Settings from "@/pages/Settings";
-import Transactions from "@/pages/Transactions";
+import { Budgets } from "@/pages/Budgets";
+import { Entities } from "@/pages/Entities";
+import { Settings } from "@/pages/Settings";
+import { Transactions } from "@/pages/Transactions";
 
 const AppLayout = styled(Layout)`
   height: 100vh;
@@ -27,7 +27,7 @@ const Logo = styled.div`
   height: 64px;
 `;
 
-const App: React.FC = () => {
+export const App: React.FC = () => {
   const selectedMenuKey = useLocation().pathname.replace("/", "");
   const defaultOpenKeys = selectedMenuKey.startsWith("settings")
     ? "settings"
@@ -79,5 +79,3 @@ const App: React.FC = () => {
     </AppLayout>
   );
 };
-
-export default App;

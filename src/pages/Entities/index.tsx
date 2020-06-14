@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { Button, Drawer, Empty } from "antd";
-import EntityForm from "@/components/EntityForm";
+import { EntityForm } from "@/components/EntityForm";
 import { EntitiesList } from "@/components/EntitiesList";
-import MainContainer from "@/components/MainContainer";
+import { MainContainer } from "@/components/MainContainer";
 import { Entity } from "@api/models/entity";
 import { getEntities } from "@/utils/entities-client";
 
-const Entities: React.FC = () => {
+export const Entities: React.FC = () => {
   const [entities, setEntities] = useState([]);
   const [drawerVisible, setDrawerVisible] = useState(false);
   const [selectedEntity, setSelectedEntity] = useState<Entity | null>(null);
@@ -93,5 +93,3 @@ const Entities: React.FC = () => {
     </MainContainer>
   );
 };
-
-export default Entities;

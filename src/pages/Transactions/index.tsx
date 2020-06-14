@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { Button, Drawer } from "antd";
-import MainContainer from "@/components/MainContainer";
-import TransactionForm from "@/components/TransactionForm";
-import TransactionsList from "@/components/TransactionsList";
+import { MainContainer } from "@/components/MainContainer";
+import { TransactionForm } from "@/components/TransactionForm";
+import { TransactionsList } from "@/components/TransactionsList";
 import { Transaction } from "@api/models/transaction";
 import { getTransactions } from "@/utils/transactions-client";
 
-const Transactions: React.FC = () => {
+export const Transactions: React.FC = () => {
   const [transactions, setTransactions] = useState([]);
   const [drawerVisible, setDrawerVisible] = useState(false);
   const [
@@ -90,5 +90,3 @@ const Transactions: React.FC = () => {
     </MainContainer>
   );
 };
-
-export default Transactions;
