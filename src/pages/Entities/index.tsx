@@ -43,9 +43,9 @@ export const Entities: React.FC = () => {
   };
 
   /**
-   * Callback to be executed when a transaction list item is clicked.
+   * Callback to be executed when a list item is clicked.
    *
-   * @param transaction the selected transaction
+   * @param entity the selected entity
    */
   const handleOnEntityClick = (entity: Entity) => {
     setSelectedEntity(entity);
