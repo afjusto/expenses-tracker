@@ -1,5 +1,5 @@
 import React, { ReactNode } from "react";
-import Layout from "antd/es/layout";
+import { Layout } from "antd";
 import styled from "styled-components";
 
 type Props = {

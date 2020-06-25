@@ -118,7 +118,7 @@ export const EntityForm: React.FC<Props> = ({
   }
 
   return (
-    <div>
+    <div data-testid="entity-form">
       <div className="ant-drawer-header">
         <div className="ant-drawer-title">
           {isEditing ? "Edit entity" : "Add a new entity"}

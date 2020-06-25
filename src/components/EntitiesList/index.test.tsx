@@ -1,6 +1,6 @@
 import React from "react";
 import userEvent from "@testing-library/user-event";
-import { render, screen, fireEvent } from "@testing-library/react";
+import { fireEvent, render, screen } from "@testing-library/react";
 import { EntitiesList, Props } from ".";
 
 let props: Props;
@@ -37,7 +37,7 @@ test("performs an action when clicking in a list item", () => {
   props = { ...props, onEntityClick: jest.fn() };
   render(<EntitiesList {...props} />);
 
-  fireEvent.click(screen.getByText("Test entity"));
+  userEvent.click(screen.getByText("Test entity"));
   expect(props.onEntityClick).toHaveBeenCalled();
 });
 
