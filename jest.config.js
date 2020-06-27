@@ -5,6 +5,7 @@ module.exports = {
   coverageReporters: ["html"],
   setupFilesAfterEnv: ["<rootDir>/src/setupTests.ts"],
   moduleNameMapper: {
+    "@api/(.*)$": "<rootDir>/api/src/$1",
     "^@/(.*)$": "<rootDir>/src/$1",
   },
   verbose: true,

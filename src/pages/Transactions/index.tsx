@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Button, Drawer } from "antd";
+import { Button, Drawer, Empty } from "antd";
 import { MainContainer } from "@/components/MainContainer";
 import { TransactionForm } from "@/components/TransactionForm";
 import { TransactionsList } from "@/components/TransactionsList";
@@ -67,10 +67,19 @@ export const Transactions: React.FC = () => {
 
   return (
     <MainContainer title="Transactions" actions={headerActions}>
-      <TransactionsList
-        transactions={transactions}
-        onTransactionClick={handleOnTransactionClick}
-      />
+      {transactions.length === 0 && (
+        <Empty description={<span>No transactions yet.</span>}>
+          <Button type="primary" onClick={() => setDrawerVisible(true)}>
+            Create Now
+          </Button>
+        </Empty>
+      )}
+      {transactions.length > 0 && (
+        <TransactionsList
+          transactions={transactions}
+          onTransactionClick={handleOnTransactionClick}
+        />
+      )}
       <Drawer
         closable={true}
         visible={drawerVisible}

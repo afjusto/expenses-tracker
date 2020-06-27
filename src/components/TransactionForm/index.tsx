@@ -22,7 +22,6 @@ import {
   openSuccessNotification,
   openErrorNotification,
 } from "@/utils/notifications";
-import "./styles.css";
 
 type Props = {
   onCancel?: () => void;
@@ -175,7 +174,7 @@ export const TransactionForm: React.FC<Props> = ({
   }
 
   return (
-    <div>
+    <div data-testid="transaction-form">
       <div className="ant-drawer-header">
         <div className="ant-drawer-title">
           {isEditing ? "Edit transaction" : "Add a new transaction"}
