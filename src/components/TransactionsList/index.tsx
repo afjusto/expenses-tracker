@@ -2,8 +2,8 @@ import React, { KeyboardEvent } from "react";
 import { Card } from "antd";
 import { Transaction } from "@api/models/transaction";
 
-type Props = {
-  onTransactionClick: (transaction: Transaction) => void;
+export type Props = {
+  onTransactionClick?: (transaction: Transaction) => void;
   transactions: Transaction[];
 };
 
@@ -17,7 +17,7 @@ export const TransactionsList: React.FC<Props> = ({
         <ListItem
           key={transaction.id}
           transaction={transaction}
-          onClick={() => onTransactionClick(transaction)}
+          onClick={() => onTransactionClick && onTransactionClick(transaction)}
         />
       ))}
     </>
