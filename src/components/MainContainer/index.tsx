@@ -8,7 +8,7 @@ type Props = {
 };
 
 const Header = styled(Layout.Header)`
-  background: #ffffff;
+  background: var(--color-white);
   display: flex;
   justify-content: space-between;
   padding: 0 24px;
@@ -17,7 +17,7 @@ const Header = styled(Layout.Header)`
 const Content = styled(Layout.Content)`
   height: calc(100vh - 128px);
   margin: 24px;
-  overflow-y: scroll;
+  overflow-y: auto;
 `;
 
 export const MainContainer: React.FC<Props> = ({

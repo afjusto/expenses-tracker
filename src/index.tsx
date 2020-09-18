@@ -15,6 +15,17 @@ const GlobalStyle = createGlobalStyle`
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
+
+  html {
+    --color-error: #ff4d4f;
+    --color-light-green: #b7eb8f;
+    --color-light-pink: #fff2f0;
+    --color-lively-light-pink: #ffccc7;
+    --color-mint: #f6ffed;
+    --color-primary: #40a9ff;
+    --color-success: #52c41a;
+    --color-white: #ffffff;
+  }
 `;
 
 ReactDOM.render(

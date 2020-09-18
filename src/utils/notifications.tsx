@@ -4,24 +4,24 @@ import { CheckCircleFilled, CloseCircleFilled } from "@ant-design/icons";
 
 export const openSuccessNotification = (message: string) => {
   notification.success({
-    icon: <CheckCircleFilled style={{ color: "#52c41a" }} />,
+    icon: <CheckCircleFilled style={{ color: "var(--color-success)" }} />,
     message,
     placement: "bottomRight",
     style: {
-      backgroundColor: "#f6ffed",
-      border: "1px solid #b7eb8f",
+      backgroundColor: "var(--color-mint)",
+      border: "1px solid var(--color-light-green)",
     },
   });
 };
 
 export const openErrorNotification = (message: string) => {
   notification.error({
-    icon: <CloseCircleFilled style={{ color: "#ff4d4f" }} />,
+    icon: <CloseCircleFilled style={{ color: "var(--color-error)" }} />,
     message,
     placement: "bottomRight",
     style: {
-      backgroundColor: "#fff2f0",
-      border: "1px solid #ffccc7",
+      backgroundColor: "var(--color-light-pink)",
+      border: "1px solid var(--color-lively-light-pink)",
     },
   });
 };

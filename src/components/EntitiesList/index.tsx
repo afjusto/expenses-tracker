@@ -75,7 +75,7 @@ const ListItem: React.FC<ListItemProps> = ({ onClick, entity }) => {
       css={`
         :hover,
         :focus {
-          border: 1px solid #40a9ff;
+          border: 1px solid var(--color-primary);
           cursor: pointer;
           transition: 0.3s linear;
         }

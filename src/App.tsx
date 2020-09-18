@@ -20,7 +20,7 @@ const AppLayout = styled(Layout)`
 const Logo = styled.div`
   align-items: center;
   border-bottom: 1px solid rgba(255, 255, 255, 0.2);
-  color: #ffffff;
+  color: var(--color-white);
   display: flex;
   font-size: 1rem;
   justify-content: center;
