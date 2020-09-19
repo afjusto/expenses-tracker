@@ -9,6 +9,7 @@ import {
 import { Layout, Menu } from "antd";
 
 import { Budgets } from "@/pages/Budgets";
+import { Categories } from "@/pages/Categories";
 import { Entities } from "@/pages/Entities";
 import { Settings } from "@/pages/Settings";
 import { Transactions } from "@/pages/Transactions";
@@ -63,6 +64,9 @@ export const App: React.FC = () => {
             <Menu.Item key="settings/general">
               <Link to="/settings/general">General</Link>
             </Menu.Item>
+            <Menu.Item key="settings/categories">
+              <Link to="/settings/categories">Categories</Link>
+            </Menu.Item>
             <Menu.Item key="settings/entities">
               <Link to="/settings/entities">Entities</Link>
             </Menu.Item>
@@ -72,6 +76,7 @@ export const App: React.FC = () => {
       <Layout>
         <Route path="/transactions" component={Transactions} />
         <Route path="/budgets" component={Budgets} />
+        <Route path="/settings/categories" component={Categories} />
         <Route path="/settings/general" component={Settings} />
         <Route path="/settings/entities" component={Entities} />
         <Route exact path="/" render={() => <Redirect to="/transactions" />} />
