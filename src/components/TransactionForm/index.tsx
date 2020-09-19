@@ -13,6 +13,7 @@ import {
 import { Store } from "antd/es/form/interface";
 import { RetweetOutlined, FallOutlined, RiseOutlined } from "@ant-design/icons";
 import { Transaction, TransactionType } from "@api/models/transaction";
+import { CategoriesSelect } from "@/components/CategoriesSelect";
 import { EntitiesSelect } from "@/components/EntitiesSelect";
 import {
   createTransaction,
@@ -292,10 +293,7 @@ export const TransactionForm: React.FC<Props> = ({
             <Row>
               <Column>
                 <Form.Item name="category" label="Category">
-                  <Select placeholder="Select a category">
-                    <Select.Option value="home">Home</Select.Option>
-                    <Select.Option value="internet">Internet</Select.Option>
-                  </Select>
+                  <CategoriesSelect />
                 </Form.Item>
               </Column>
               <Column>

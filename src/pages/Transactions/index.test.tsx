@@ -7,6 +7,10 @@ import { render, screen, waitFor } from "@testing-library/react";
 import { getTransactions } from "@/utils/transactions-client";
 import { Transactions } from ".";
 
+jest.mock("@/utils/categories-client", () => ({
+  getCategories: jest.fn(() => Promise.resolve({ categories: [] })),
+}));
+
 jest.mock("@/utils/entities-client", () => ({
   getEntities: jest.fn(() => Promise.resolve({ entities: [] })),
 }));
