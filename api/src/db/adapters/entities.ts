@@ -2,6 +2,7 @@ import { uuid } from "uuidv4";
 import { LowdbSync } from "lowdb";
 import { Schema } from "@api/db";
 import { Entity } from "@api/models/entity";
+import { Transaction } from "@api/models/transaction";
 
 interface EntitiesAdapter {
   /**
@@ -20,10 +21,10 @@ interface EntitiesAdapter {
   getAll(): Entity[];
 
   /**
-   * Creates a new entitiy.
+   * Creates a new entity.
    *
-   * @param entitiy the entitiy to be created
-   * @returns the created entitiy
+   * @param entity the entity to be created
+   * @returns the created entity
    */
   create(entity: Entity): Entity;
 
@@ -72,6 +73,14 @@ export const adapter = (db: LowdbSync<Schema>): EntitiesAdapter => {
   };
 
   const remove = (id: string): void => {
+    db.get("transactions")
+      .filter({ entityId: id })
+      .map((transaction: Transaction) => {
+        delete transaction.entityId;
+        return transaction;
+      })
+      .write();
+
     db.get("entities").remove({ id }).write();
   };
 

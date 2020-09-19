@@ -150,7 +150,15 @@ export const EntityForm: React.FC<Props> = ({
             >
               {isEditing && existingEntity && (
                 <Popconfirm
-                  title="Are you sure you want to delete this entity?"
+                  title={() => (
+                    <>
+                      <div>Are you sure you want to delete this entity?</div>
+                      <div>
+                        All linked transactions will have their entity
+                        unassigned.
+                      </div>
+                    </>
+                  )}
                   onConfirm={handleDelete}
                   okText="Yes"
                   cancelText="No"
