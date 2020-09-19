@@ -69,6 +69,11 @@ export const EntityForm: React.FC<Props> = ({
       );
   };
 
+  /**
+   * Removes an existing entity and provides feedback to the user.
+   *
+   * @param entity the entity to be removed
+   */
   const remove = (entity: Entity): void => {
     deleteEntity(entity)
       .then(() => openSuccessNotification("Entity successfully deleted."))

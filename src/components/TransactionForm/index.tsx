@@ -97,6 +97,11 @@ export const TransactionForm: React.FC<Props> = ({
       );
   };
 
+  /**
+   * Removes an existing transaction and provides feedback to the user.
+   *
+   * @param transaction the transaction to be removed
+   */
   const remove = (transaction: Transaction): void => {
     deleteTransaction(transaction)
       .then(() => openSuccessNotification("Transaction successfully deleted."))
