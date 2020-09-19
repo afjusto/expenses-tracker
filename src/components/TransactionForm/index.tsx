@@ -13,6 +13,7 @@ import {
 import { Store } from "antd/es/form/interface";
 import { RetweetOutlined, FallOutlined, RiseOutlined } from "@ant-design/icons";
 import { Transaction, TransactionType } from "@api/models/transaction";
+import { EntitiesSelect } from "@/components/EntitiesSelect";
 import {
   createTransaction,
   updateTransaction,
@@ -294,9 +295,7 @@ export const TransactionForm: React.FC<Props> = ({
               </Column>
               <Column>
                 <Form.Item name="entity" label="Entity">
-                  <Select placeholder="Select an entity">
-                    <Select.Option value="dummy">Dummy</Select.Option>
-                  </Select>
+                  <EntitiesSelect />
                 </Form.Item>
               </Column>
             </Row>

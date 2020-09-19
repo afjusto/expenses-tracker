@@ -7,6 +7,10 @@ import { render, screen, waitFor } from "@testing-library/react";
 import { getTransactions } from "@/utils/transactions-client";
 import { Transactions } from ".";
 
+jest.mock("@/utils/entities-client", () => ({
+  getEntities: jest.fn(() => Promise.resolve({ entities: [] })),
+}));
+
 jest.mock("@/utils/transactions-client", () => ({
   deleteTransaction: jest.fn(() => Promise.resolve()),
   getTransactions: jest.fn(),
@@ -66,7 +70,10 @@ test("opens the form drawer when the create now button (empty state) is clicked"
   expect(screen.queryByTestId("transaction-form")).not.toBeInTheDocument();
   await screen.findByRole("button", { name: /create now/i });
   userEvent.click(screen.getByRole("button", { name: /create now/i }));
-  expect(screen.queryByTestId("transaction-form")).toBeVisible();
+
+  await waitFor(() => {
+    expect(screen.queryByTestId("transaction-form")).toBeVisible();
+  });
 });
 
 test("renders a list of transactions", async () => {
@@ -84,7 +91,10 @@ test("opens the form drawer when the add transaction button is clicked", async (
   expect(screen.queryByTestId("transaction-form")).not.toBeInTheDocument();
   await screen.findByRole("button", { name: /add transaction/i });
   userEvent.click(screen.getByRole("button", { name: /add transaction/i }));
-  expect(screen.queryByTestId("transaction-form")).toBeVisible();
+
+  await waitFor(() => {
+    expect(screen.queryByTestId("transaction-form")).toBeVisible();
+  });
 });
 
 test("opens the form drawer when a list item is clicked", async () => {
@@ -93,7 +103,10 @@ test("opens the form drawer when a list item is clicked", async () => {
   expect(screen.queryByTestId("transaction-form")).not.toBeInTheDocument();
   await screen.findByText("Test transaction");
   userEvent.click(screen.getByText("Test transaction"));
-  expect(screen.queryByTestId("transaction-form")).toBeVisible();
+
+  await waitFor(() => {
+    expect(screen.queryByTestId("transaction-form")).toBeVisible();
+  });
 });
 
 test("closes the form drawer and re-fetches data after an transaction is deleted", async () => {
