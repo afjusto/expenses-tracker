@@ -11,7 +11,7 @@
   "main": "./dist/electron/bundle.js",
   "scripts": {
     "analyze": "webpack-bundle-analyzer --port 4200 dist/ui/stats.json",
-    "build": "webpack --config webpack.prod.js --env.production",
+    "build": "webpack --config webpack.prod.js",
     "dev": "webpack --config webpack.dev.js --watch",
     "lint": "eslint './**/*.{ts,tsx}' --ignore-pattern node_modules/",
     "start": "electron .",
