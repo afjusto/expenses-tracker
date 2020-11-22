@@ -1,4 +1,4 @@
-import React, { useState, ChangeEvent, KeyboardEvent } from "react";
+import { useState, ChangeEvent, KeyboardEvent } from "react";
 import { Card, List, Input } from "antd";
 import { Category } from "@api/models/category";
 
@@ -11,7 +11,7 @@ export const CategoriesList: React.FC<Props> = ({
   onCategoryClick,
   categories,
 }) => {
-  const [searchTerm, setSearchTerm] = useState("");
+  const [searchTerm, setSearchTerm] = useState<string>("");
 
   if (searchTerm) {
     categories = categories.filter(

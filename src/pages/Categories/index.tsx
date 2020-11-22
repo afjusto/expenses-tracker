@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { Button, Drawer, Empty } from "antd";
 import { CategoryForm } from "@/components/CategoryForm";
 import { CategoriesList } from "@/components/CategoriesList";
@@ -7,8 +7,8 @@ import { Category } from "@api/models/category";
 import { getCategories } from "@/utils/categories-client";
 
 export const Categories: React.FC = () => {
-  const [categories, setCategories] = useState([]);
-  const [drawerVisible, setDrawerVisible] = useState(false);
+  const [categories, setCategories] = useState<Category[]>([]);
+  const [drawerVisible, setDrawerVisible] = useState<boolean>(false);
   const [selectedCategory, setSelectedCategory] = useState<Category | null>(
     null
   );

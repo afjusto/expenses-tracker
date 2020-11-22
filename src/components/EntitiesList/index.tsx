@@ -1,4 +1,4 @@
-import React, { useState, ChangeEvent, KeyboardEvent } from "react";
+import { useState, ChangeEvent, KeyboardEvent } from "react";
 import { Card, List, Input } from "antd";
 import { Entity } from "@api/models/entity";
 
@@ -8,7 +8,7 @@ export type Props = {
 };
 
 export const EntitiesList: React.FC<Props> = ({ onEntityClick, entities }) => {
-  const [searchTerm, setSearchTerm] = useState("");
+  const [searchTerm, setSearchTerm] = useState<string>("");
 
   if (searchTerm) {
     entities = entities.filter(

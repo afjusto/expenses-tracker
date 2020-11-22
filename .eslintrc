@@ -19,6 +19,8 @@
   "plugins": ["import"],
   "rules": {
     "import/no-default-export": "error",
+    "react/jsx-uses-react": "off",
+    "react/react-in-jsx-scope": "off",
     "react/prop-types": "off",
     "testing-library/no-manual-cleanup": "error",
     "testing-library/prefer-explicit-assert": "error",

@@ -4,7 +4,7 @@ import { Entity } from "@api/models/entity";
 /**
  * Gets the list of entities.
  */
-export const getEntities = () => {
+export const getEntities = (): Promise<{ entities: Entity[] }> => {
   return Promise.resolve(ipcRenderer.sendSync("@entity/GET_ALL"));
 };
 
@@ -13,7 +13,7 @@ export const getEntities = () => {
  *
  * @param entity the entity to be created
  */
-export const createEntity = (entity: Entity) => {
+export const createEntity = (entity: Entity): Promise<Entity> => {
   return Promise.resolve(ipcRenderer.sendSync("@entity/CREATE", entity));
 };
 
@@ -22,7 +22,7 @@ export const createEntity = (entity: Entity) => {
  *
  * @param entity the entity to be updated
  */
-export const updateEntity = (entity: Entity) => {
+export const updateEntity = (entity: Entity): Promise<Entity> => {
   return Promise.resolve(ipcRenderer.sendSync("@entity/UPDATE", entity));
 };
 
@@ -31,6 +31,6 @@ export const updateEntity = (entity: Entity) => {
  *
  * @param entity the entity to be deleted
  */
-export const deleteEntity = (entity: Entity) => {
+export const deleteEntity = (entity: Entity): Promise<void> => {
   return Promise.resolve(ipcRenderer.sendSync("@entity/DELETE", entity.id));
 };

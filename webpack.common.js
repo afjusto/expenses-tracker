@@ -1,5 +1,5 @@
 const path = require("path");
-const merge = require("webpack-merge");
+const { merge } = require("webpack-merge");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const WebpackBar = require("webpackbar");
 
@@ -17,9 +17,7 @@ const uiConfig = {
       {
         test: /\.(ts|js)x?$/,
         exclude: /node_modules/,
-        use: {
-          loader: "babel-loader",
-        },
+        use: ["babel-loader"],
       },
       {
         test: /\.css$/,
@@ -56,7 +54,7 @@ const mainConfig = {
     rules: [
       {
         test: /\.(ts)([?]?.*)$/,
-        loader: ["ts-loader"],
+        use: ["ts-loader"],
         exclude: /node_modules/,
       },
     ],

@@ -1,4 +1,4 @@
-import React, { KeyboardEvent } from "react";
+import { KeyboardEvent } from "react";
 import { Card } from "antd";
 import { Transaction } from "@api/models/transaction";
 

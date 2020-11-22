@@ -1,4 +1,3 @@
-import React from "react";
 import styled from "styled-components";
 import { Button, Form, Input, Popconfirm } from "antd";
 import { Store } from "antd/es/form/interface";

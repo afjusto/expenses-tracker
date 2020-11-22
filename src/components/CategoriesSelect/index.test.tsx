@@ -1,4 +1,3 @@
-import React from "react";
 import userEvent from "@testing-library/user-event";
 import { mocked } from "ts-jest/utils";
 import { render, screen, waitFor } from "@testing-library/react";
@@ -31,8 +30,10 @@ test("renders the categories options", async () => {
   await screen.findByText(/select a category/i);
   userEvent.click(screen.getByText(/select a category/i));
 
-  expect(screen.getByText("test category")).toBeInTheDocument();
-  expect(screen.getByText("another test category")).toBeInTheDocument();
+  await waitFor(() => {
+    expect(screen.getByText("test category")).toBeInTheDocument();
+    expect(screen.getByText("another test category")).toBeInTheDocument();
+  });
 });
 
 test("selects an option by default", async () => {

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { Select } from "antd";
 import { Category } from "@api/models/category";
 import { getCategories } from "@/utils/categories-client";
@@ -9,7 +9,7 @@ export type Props = {
 };
 
 export const CategoriesSelect: React.FC<Props> = ({ value, onChange }) => {
-  const [categories, setCategories] = useState([]);
+  const [categories, setCategories] = useState<Category[]>([]);
 
   useEffect(() => {
     let mounted = true;

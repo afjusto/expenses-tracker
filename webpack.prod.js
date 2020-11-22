@@ -1,6 +1,6 @@
 const BundleAnalyzerPlugin = require("webpack-bundle-analyzer")
   .BundleAnalyzerPlugin;
-const merge = require("webpack-merge");
+const { merge } = require("webpack-merge");
 const { ui, main } = require("./webpack.common.js");
 
 const uiConfig = merge(ui, {

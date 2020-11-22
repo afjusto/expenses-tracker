@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { Button, Drawer, Empty } from "antd";
 import { MainContainer } from "@/components/MainContainer";
 import { TransactionForm } from "@/components/TransactionForm";
@@ -7,8 +7,8 @@ import { Transaction } from "@api/models/transaction";
 import { getTransactions } from "@/utils/transactions-client";
 
 export const Transactions: React.FC = () => {
-  const [transactions, setTransactions] = useState([]);
-  const [drawerVisible, setDrawerVisible] = useState(false);
+  const [transactions, setTransactions] = useState<Transaction[]>([]);
+  const [drawerVisible, setDrawerVisible] = useState<boolean>(false);
   const [
     selectedTransaction,
     setSelectedTransaction,

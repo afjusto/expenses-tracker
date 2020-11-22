@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { Select } from "antd";
 import { Entity } from "@api/models/entity";
 import { getEntities } from "@/utils/entities-client";
@@ -9,7 +9,7 @@ export type Props = {
 };
 
 export const EntitiesSelect: React.FC<Props> = ({ value, onChange }) => {
-  const [entities, setEntities] = useState([]);
+  const [entities, setEntities] = useState<Entity[]>([]);
 
   useEffect(() => {
     let mounted = true;

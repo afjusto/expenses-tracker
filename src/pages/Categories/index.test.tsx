@@ -1,4 +1,3 @@
-import React from "react";
 import userEvent from "@testing-library/user-event";
 import { act } from "react-dom/test-utils";
 import { mocked } from "ts-jest/utils";

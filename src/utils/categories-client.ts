@@ -4,7 +4,7 @@ import { Category } from "@api/models/category";
 /**
  * Gets the list of categories.
  */
-export const getCategories = () => {
+export const getCategories = (): Promise<{ categories: Category[] }> => {
   return Promise.resolve(ipcRenderer.sendSync("@category/GET_ALL"));
 };
 
@@ -13,7 +13,7 @@ export const getCategories = () => {
  *
  * @param category the category to be created
  */
-export const createCategory = (category: Category) => {
+export const createCategory = (category: Category): Promise<Category> => {
   return Promise.resolve(ipcRenderer.sendSync("@category/CREATE", category));
 };
 
@@ -22,7 +22,7 @@ export const createCategory = (category: Category) => {
  *
  * @param category the category to be updated
  */
-export const updateCategory = (category: Category) => {
+export const updateCategory = (category: Category): Promise<Category> => {
   return Promise.resolve(ipcRenderer.sendSync("@category/UPDATE", category));
 };
 
@@ -31,6 +31,6 @@ export const updateCategory = (category: Category) => {
  *
  * @param category the category to be deleted
  */
-export const deleteCategory = (category: Category) => {
+export const deleteCategory = (category: Category): Promise<void> => {
   return Promise.resolve(ipcRenderer.sendSync("@category/DELETE", category.id));
 };

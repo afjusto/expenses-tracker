@@ -1,4 +1,3 @@
-import React from "react";
 import userEvent from "@testing-library/user-event";
 import { mocked } from "ts-jest/utils";
 import { render, screen, waitFor } from "@testing-library/react";
@@ -31,8 +30,10 @@ test("renders the entities options", async () => {
   await screen.findByText(/select an entity/i);
   userEvent.click(screen.getByText(/select an entity/i));
 
-  expect(screen.getByText("test entity")).toBeInTheDocument();
-  expect(screen.getByText("another test entity")).toBeInTheDocument();
+  await waitFor(() => {
+    expect(screen.getByText("test entity")).toBeInTheDocument();
+    expect(screen.getByText("another test entity")).toBeInTheDocument();
+  });
 });
 
 test("selects an option by default", async () => {
