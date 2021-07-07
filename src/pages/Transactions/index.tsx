@@ -9,10 +9,8 @@ import { getTransactions } from "@/utils/transactions-client";
 export const Transactions: React.FC = () => {
   const [transactions, setTransactions] = useState<Transaction[]>([]);
   const [drawerVisible, setDrawerVisible] = useState<boolean>(false);
-  const [
-    selectedTransaction,
-    setSelectedTransaction,
-  ] = useState<Transaction | null>(null);
+  const [selectedTransaction, setSelectedTransaction] =
+    useState<Transaction | null>(null);
 
   /**
    * Closes the drawer.

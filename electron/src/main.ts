@@ -12,7 +12,7 @@ const createWindow = () => {
     height: 1024,
     webPreferences: {
       nodeIntegration: true,
-      contextIsolation: false
+      contextIsolation: false,
     },
   });
   mainWindow.loadURL(`file://${path.join(__dirname, "../ui/index.html")}`);
