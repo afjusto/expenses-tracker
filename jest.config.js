@@ -8,5 +8,6 @@ module.exports = {
     "@api/(.*)$": "<rootDir>/api/src/$1",
     "^@/(.*)$": "<rootDir>/src/$1",
   },
+  testEnvironment: "jsdom",
   verbose: true,
 };

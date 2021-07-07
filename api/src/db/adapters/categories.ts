@@ -1,4 +1,4 @@
-import { uuid } from "uuidv4";
+import { v4 as uuid } from 'uuid';
 import { LowdbSync } from "lowdb";
 import { Schema } from "@api/db";
 import { Category } from "@api/models/category";
